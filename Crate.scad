@@ -48,7 +48,7 @@ module support(width, length) {
 }
 }
 
-module crate(width, length, height, openface = false) {
+module crate(width, length, height, openface = false, widthsupports = true) {
     if (openface) {
         support(width, length);
     }
@@ -57,9 +57,15 @@ module crate(width, length, height, openface = false) {
     }
 
     rotate([90,0,0]){
+        if (widthsupports) {
+            translate([0, height/2, -width/2]) cube([1,height,1], center=true);
+        }
         support(height, length);
     }
     translate([0, width, 0]) rotate([90,0,0]){
+        if (widthsupports) {
+            translate([length, height/2, width/2]) cube([1,height,1], center=true);
+        }
         support(height, length);
     }
     rotate([0,-90,0]){
@@ -70,4 +76,4 @@ module crate(width, length, height, openface = false) {
     }
 }
 
-crate(24, 18, 12);
+crate(24, 18, 14, widthsupports=true);
