@@ -19,8 +19,8 @@ module triangle_container(width, height, wall_thickness=1.2) {
 
 module triangle_container_case(width, height, wall_thickness=1.2) {
 	
-	triangle_container(width, height, wall_thickness);
-	translate([0,0,height]) {
+	triangle_container(width, height -10, wall_thickness);
+	translate([0,0,height - 10]) {
 		linear_extrude(10) {
 			difference() {
 				offset(wall_thickness-.4) {
@@ -35,8 +35,8 @@ module triangle_container_case(width, height, wall_thickness=1.2) {
 
 module triangle_container_lid(width, height, wall_thickness=1.2) {
 
-	triangle_container(width, height, wall_thickness);
-	translate([0,0,height]) {
+	triangle_container(width, height -10, wall_thickness);
+	translate([0,0,height -10]) {
 		linear_extrude(10) {
 			difference() {
 				offset(wall_thickness) {
@@ -50,9 +50,10 @@ module triangle_container_lid(width, height, wall_thickness=1.2) {
 	}
 }
 
-width = 45;
+width = 60;
+
 // Case
-triangle_container_case(width, 105, 2);
+triangle_container_case(width, 30, 2);
 
 //Lid
 translate([width + 20, 0, 0]) {
