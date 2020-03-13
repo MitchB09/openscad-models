@@ -9,7 +9,7 @@ module container_shape(width, box_width, box_depth) {
     ]);
 }
 
-module triangle_container(width, height, box_width, box_depth, wall_thickness=1.2) {
+module triangle_container(width, height, box_width, box_depth, wall_thickness=2) {
 	linear_extrude(wall_thickness) {
         offset(wall_thickness) {
             container_shape(width, box_width, box_depth);
@@ -27,7 +27,7 @@ module triangle_container(width, height, box_width, box_depth, wall_thickness=1.
     }
 }
 
-module triangle_container_case(width, height, box_width, box_depth, box_height=90, wall_thickness=1.2, overlap = 15) {
+module triangle_container_case(width, height, box_width=0, box_depth=0, box_height=0, wall_thickness=2, overlap = 20) {
 	
 	triangle_container(width, height-(overlap/2), box_width, box_depth, wall_thickness);
     linear_extrude(height-box_height) {
@@ -56,7 +56,7 @@ module triangle_container_case(width, height, box_width, box_depth, box_height=9
 	}
 }
 
-module triangle_container_lid(width, height, box_width, box_depth, wall_thickness=2, overlap = 15) {
+module triangle_container_lid(width, height=0, box_width=0, box_depth=0, wall_thickness=2, overlap = 20) {
 
 	triangle_container(width, lid_height, box_width, box_depth, wall_thickness);
 	translate([0,0,lid_height]) {
@@ -80,17 +80,18 @@ module triangle_container_lid(width, height, box_width, box_depth, wall_thicknes
 
 
 
-width = 58;
-height = 40;
+width = 26;
+height = 30;
 box_width = 26;
 box_depth = 18;
-box_height = 40;
+box_height = 30;
 lid_height = 0;
 
 // Case
-triangle_container_case(width, height - lid_height, box_width, box_depth, box_height - lid_height, 2, 20);
+triangle_container_case(width, height - lid_height, box_width, box_depth, 
+box_height - lid_height, 2, 20);
 
 //Lid
 translate([width + 20, 0, 0])
-triangle_container_lid(width, lid_height, box_width, box_depth, 2, 20);
+triangle_container_lid(width, lid_height);
 
