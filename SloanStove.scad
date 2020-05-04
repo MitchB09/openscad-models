@@ -15,23 +15,23 @@ module incut(incut_width, incut_height, incut_offset) {
     }
 }
 
-width = 58;
+width = 56;
 height = 110;
 box_width = 26;
 box_depth = 18;
 box_height = 85;
-lid_height = 5;
+lid_height = 10;
 
 // Case
-difference() {
+/*difference() {
     
     triangle_container_case(width, height - lid_height, box_width, box_depth, box_height - lid_height, 2, 20);
     incut(30, 70, 5);
 
-}
+}*/
 
 //Lid
-translate([width + 20, 0, 0])
+//translate([width + 20, 0, 0])
 triangle_container_lid(width, lid_height, box_width, box_depth, 2, 20);
 
 

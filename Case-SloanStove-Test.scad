@@ -26,7 +26,7 @@ lid_height = 5;
 difference() {
     
     triangle_container_case(width, height - lid_height, box_width, box_depth, box_height - lid_height, 2, 20);
-    incut(30, 70, 5);
+    //incut(30, 70, 5);
 
 }
 
