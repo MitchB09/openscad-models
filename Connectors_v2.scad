@@ -6,7 +6,7 @@ tolerance = 0.4;
 thickness = width/10;
 $fn = 100;
 
-module connector_female(width, height) {
+module connector_female(width, height, tolerance=0.04) {
     
     //Bottom disc
     linear_extrude(thickness) circle(width);
@@ -27,7 +27,7 @@ module connector_female(width, height) {
     }
 }
 
-module connector_male(width, height) {
+module connector_male(width, height, tolerance=0.4) {
     
     //Bottom disc
     linear_extrude(thickness) circle(width);

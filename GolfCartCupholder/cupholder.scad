@@ -21,10 +21,10 @@ difference() {
     rotate([0,-90,0]) {
         linear_extrude(100, center=true) {
             polygon([
-                [15 + thickness, -31],
+                [15 + thickness, -25],
                 [80 + thickness, -31],
-                [40 + thickness, 31],
-                [15 + thickness, 31]
+                [40 + thickness, 32],
+                [15 + thickness, 28]
             ]);
         }
     }
@@ -40,8 +40,33 @@ difference() {
             ]);
         }
     }
+    
+    //Front Cut on Cylinder
+    translate([0, 34+thickness, 15+thickness]) {
+        rotate([90, -90, 0]) linear_extrude(15) polygon([
+            [0, -10],
+            [30, 0],
+            [0, 10]
+        ]);
+    } 
+    
+    //Back Cut on Cylinder
+    translate([0, -34+thickness, 15+thickness]) {
+        rotate([90, -90, 0]) linear_extrude(15) {
+            difference() {
+                polygon([
+                    [0, -15],
+                    [55, -10],
+                    [55, 10],
+                    [0, 15]
+                ]);
+                translate([65,0,0]) circle(15);
+            }
+        }
+    } 
+
 }
 
-translate([200,0,0]) {
-    
-}
+
+
+
