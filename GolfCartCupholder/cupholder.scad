@@ -1,5 +1,5 @@
 $fn = 100;
-use <../Connectors_v2.scad>;
+use <../ConnectorsV3.scad>;
 
 thickness = 3;
 linear_extrude(50) translate([0,-35,90]) rotate([90,0,0]) cylinder(30, 25);
@@ -11,7 +11,7 @@ difference() {
     difference() {
         union() {
             linear_extrude(105 + thickness) { circle(34 + thickness); }
-            translate([0,-35,90]) rotate([90,0,0]) connector_female(15, 10);
+            translate([0,-45,90]) rotate([-90,0,0]) connector_female(10, 10);
             translate([0,-20,90]) rotate([90,0,0]) linear_extrude(15) circle(15);
         }
         translate([0,0, thickness]) { linear_extrude(121) { circle(34); } }

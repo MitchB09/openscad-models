@@ -1,9 +1,6 @@
-radius=15;
-overlap=10;
-tolerance=1;
-$fn=256;
 
-module connector_male(radius, overlap, tolerance=0.04)
+
+module connector_male(radius, overlap, tolerance=0.4)
 {
     translate([0,0,overlap/2])
     rotate_extrude(angle=45, convexity=10)
@@ -16,7 +13,7 @@ module connector_male(radius, overlap, tolerance=0.04)
 }
 
 //Outer Piece 
-module connector_female(radius, overlap, thickness=5, tolerance=0.04)
+module connector_female(radius, overlap, thickness=5, tolerance=0.4)
 {
 
     difference() {
@@ -26,21 +23,27 @@ module connector_female(radius, overlap, thickness=5, tolerance=0.04)
         
         translate([0,0,overlap/2]) {
             rotate_extrude(angle=360, convexity=10)
-                translate([radius, 0]) circle(radius/5);
+                translate([radius, 0]) circle(radius/5+tolerance);
             cylinder(r=radius, h=overlap);
         }
         rotate_extrude(angle=48, convexity=10)
-            translate([radius, 0]) square([radius/5, overlap/2]);
+            translate([radius, 0]) square([radius/5+tolerance, overlap/2]);
         
         rotate_extrude(angle=48, convexity=10)
-            translate([-radius-(radius/5), 0]) square([radius/5, overlap/2]);
+            translate([-radius-(radius/5+tolerance), 0]) square([radius/5+tolerance, overlap/2]);
     }
     
     //}
 }
 
-connector_male(radius, overlap, tolerance=tolerance);
+radius=8;
+overlap=10;
+tolerance=0.4;
+thickness=3;
+$fn=100;
 
-translate([radius*3, 0, 0])
-connector_female(radius, overlap, tolerance=tolerance);
+//connector_male(radius, overlap, tolerance=tolerance);
+
+//translate([radius*3, 0, 0])
+connector_female(radius, overlap, thickness=thickness, tolerance=tolerance);
 
